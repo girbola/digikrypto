@@ -19,7 +19,7 @@ public class KeyBankView {
     int col = 0;
     int row = 0;
 
-    for (int i = 1; i <= 30; i++) {
+    for (int i = 1; i <= 25; i++) {
       Label numLabel = new Label(i + " =");
       numLabel.setMinWidth(30);
 
