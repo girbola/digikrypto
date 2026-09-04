@@ -1,0 +1,387 @@
+.root {
+  -fx-font-family: "Segoe UI", "Arial", sans-serif;
+  -fx-background-color: #111827;
+}
+
+/* ============================================================
+MAIN PANELS
+============================================================ */
+
+.main-background {
+  -fx-background-color: #111827;
+}
+
+.content-panel {
+  -fx-background-color: #111827;
+}
+
+.card {
+  -fx-background-color: #1f2937;
+  -fx-background-radius: 12;
+  -fx-border-color: #374151;
+  -fx-border-radius: 12;
+  -fx-border-width: 1;
+  -fx-padding: 15;
+}
+
+/* ============================================================
+TOOLBAR
+============================================================ */
+
+.tool-bar {
+  -fx-background-color: #0f172a;
+  -fx-border-color: #263244;
+  -fx-border-width: 0 0 1 0;
+  -fx-padding: 8 12 8 12;
+}
+
+.tool-bar .button {
+  -fx-background-color: #1e293b;
+  -fx-text-fill: #e5e7eb;
+  -fx-background-radius: 7;
+  -fx-border-color: #475569;
+  -fx-border-radius: 7;
+  -fx-padding: 8 14;
+}
+
+.tool-bar .button:hover {
+  -fx-background-color: #334155;
+  -fx-border-color: #60a5fa;
+}
+
+.tool-bar .button:pressed {
+  -fx-background-color: #1d4ed8;
+}
+
+/* ============================================================
+TABS
+============================================================ */
+
+.tab-pane {
+  -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+  -fx-background-color: #0f172a;
+  -fx-padding: 5 5 0 5;
+}
+
+.tab-pane .tab-header-background {
+  -fx-background-color: #0f172a;
+}
+
+.tab {
+  -fx-background-color: #1e293b;
+  -fx-background-radius: 8 8 0 0;
+  -fx-padding: 8 18;
+}
+
+.tab .tab-label {
+  -fx-text-fill: #94a3b8;
+  -fx-font-weight: bold;
+}
+
+.tab:selected {
+  -fx-background-color: #2563eb;
+}
+
+.tab:selected .tab-label {
+  -fx-text-fill: white;
+}
+
+.tab:hover {
+  -fx-background-color: #334155;
+}
+
+/* ============================================================
+LABELS
+============================================================ */
+
+.label {
+  -fx-text-fill: #d1d5db;
+}
+
+.section-title {
+  -fx-text-fill: #f8fafc;
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+}
+
+.subtle-label {
+  -fx-text-fill: #94a3b8;
+}
+
+.number-label {
+  -fx-text-fill: #64748b;
+  -fx-font-size: 9px;
+  -fx-font-weight: bold;
+}
+
+/* ============================================================
+INPUTS
+============================================================ */
+
+.text-field,
+.text-area,
+.spinner {
+  -fx-background-color: #0f172a;
+  -fx-text-fill: #f8fafc;
+  -fx-prompt-text-fill: #64748b;
+  -fx-border-color: #334155;
+  -fx-border-radius: 7;
+  -fx-background-radius: 7;
+}
+
+.text-field:focused,
+.text-area:focused,
+.spinner:focused {
+  -fx-border-color: #3b82f6;
+  -fx-effect: dropshadow(
+    gaussian,
+    rgba(59, 130, 246, 0.35),
+    8,
+    0.2,
+    0,
+    0
+  );
+}
+
+.text-area .content {
+  -fx-background-color: #0f172a;
+}
+
+/* ============================================================
+SPINNER
+============================================================ */
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+  -fx-background-color: #1e293b;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+  -fx-background-color: #334155;
+}
+
+/* ============================================================
+NORMAL BUTTONS
+============================================================ */
+
+.button {
+  -fx-background-color: #2563eb;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-background-radius: 7;
+  -fx-border-radius: 7;
+  -fx-padding: 8 15;
+  -fx-cursor: hand;
+}
+
+.button:hover {
+  -fx-background-color: #3b82f6;
+}
+
+.button:pressed {
+  -fx-background-color: #1d4ed8;
+}
+
+/* Generate button */
+
+.generate-button {
+  -fx-background-color: #10b981;
+  -fx-font-size: 14px;
+  -fx-padding: 10 22;
+}
+
+.generate-button:hover {
+  -fx-background-color: #34d399;
+}
+
+.generate-button:pressed {
+  -fx-background-color: #059669;
+}
+
+/* ============================================================
+KEYPAD
+============================================================ */
+
+.keypad {
+  -fx-background-color: #0f172a;
+  -fx-background-radius: 10;
+  -fx-padding: 12;
+  -fx-border-color: #263244;
+  -fx-border-radius: 10;
+}
+
+.keypad-button {
+  -fx-background-color: #1e293b;
+  -fx-text-fill: #e2e8f0;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-background-radius: 6;
+  -fx-border-color: #475569;
+  -fx-border-radius: 6;
+}
+
+.keypad-button:hover {
+  -fx-background-color: #334155;
+  -fx-border-color: #60a5fa;
+}
+
+.keypad-zero {
+  -fx-background-color: #7f1d1d;
+  -fx-text-fill: #fecaca;
+}
+
+.keypad-zero:hover {
+  -fx-background-color: #991b1b;
+}
+
+/* ============================================================
+KEY BANK
+============================================================ */
+
+.key-bank {
+  -fx-background-color: #1f2937;
+  -fx-background-radius: 12;
+  -fx-border-color: #374151;
+  -fx-border-radius: 12;
+  -fx-padding: 15;
+}
+
+.key-bank-title {
+  -fx-text-fill: #f8fafc;
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+}
+
+.key-row {
+  -fx-background-color: #111827;
+  -fx-background-radius: 7;
+  -fx-border-color: #263244;
+  -fx-border-radius: 7;
+  -fx-padding: 4 7;
+}
+
+.key-row:hover {
+  -fx-background-color: #172033;
+  -fx-border-color: #3b82f6;
+}
+
+.key-number {
+  -fx-text-fill: #93c5fd;
+  -fx-font-weight: bold;
+  -fx-font-size: 13px;
+}
+
+.key-count {
+  -fx-text-fill: #64748b;
+  -fx-font-size: 11px;
+  -fx-font-weight: bold;
+}
+
+.key-letter {
+  -fx-background-color: #0f172a;
+  -fx-text-fill: #f8fafc;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-alignment: center;
+  -fx-background-radius: 5;
+  -fx-border-color: #475569;
+  -fx-border-radius: 5;
+}
+
+.key-letter:focused {
+  -fx-border-color: #10b981;
+  -fx-background-color: #172033;
+}
+
+/* ============================================================
+CROSSWORD
+============================================================ */
+
+.crossword-background {
+  -fx-background-color: #020617;
+}
+
+.crossword-grid {
+  -fx-background-color: #475569;
+  -fx-padding: 2;
+}
+
+.crypto-cell {
+  -fx-background-color: #f8fafc;
+  -fx-border-color: #cbd5e1;
+  -fx-border-width: 0.5;
+}
+
+.crypto-cell:hover {
+  -fx-background-color: #dbeafe;
+}
+
+.crypto-number {
+  -fx-text-fill: #64748b;
+  -fx-font-size: 8px;
+  -fx-font-weight: bold;
+}
+
+.crypto-letter {
+  -fx-background-color: transparent;
+  -fx-text-fill: #111827;
+  -fx-font-size: 17px;
+  -fx-font-weight: bold;
+  -fx-border-color: transparent;
+  -fx-alignment: center;
+}
+
+.crypto-letter:focused {
+  -fx-background-color: #dbeafe;
+  -fx-border-color: #3b82f6;
+  -fx-border-width: 2;
+}
+
+/* Black crossword cells */
+
+.black-cell {
+  -fx-background-color: #020617;
+}
+
+/* ============================================================
+SCROLLBARS
+============================================================ */
+
+.scroll-pane {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+}
+
+.scroll-pane > .viewport {
+  -fx-background-color: transparent;
+}
+
+.scroll-bar {
+  -fx-background-color: #0f172a;
+}
+
+.scroll-bar .thumb {
+  -fx-background-color: #475569;
+  -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+  -fx-background-color: #64748b;
+}
+
+/* ============================================================
+TOOLTIPS
+============================================================ */
+
+.tooltip {
+  -fx-background-color: #020617;
+  -fx-text-fill: #f8fafc;
+  -fx-border-color: #475569;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+  -fx-padding: 7;
+}
