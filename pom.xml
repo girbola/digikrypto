@@ -61,6 +61,25 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- OpenCV OpenPnP-kääreellä (sisältää natiivikirjastot automaattisesti) -->
+    <dependency>
+      <groupId>org.openpnp</groupId>
+      <artifactId>opencv</artifactId>
+      <version>4.9.0-0</version>
+    </dependency>
+    <!-- Source: https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.1.0-alpha1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Tess4J (Tesseract OCR -kääre Javalle) -->
+    <dependency>
+      <groupId>net.sourceforge.tess4j</groupId>
+      <artifactId>tess4j</artifactId>
+      <version>5.8.0</version>
+    </dependency>
   </dependencies>
 
   <build>

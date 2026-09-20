@@ -3,6 +3,8 @@ package com.girbola.m2krypto;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,13 +13,21 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import nu.pattern.OpenCV;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class CryptoCrossword extends Application {
+
+  static {
+    // Ladataan OpenCV-natiivikirjasto (org.openpnp.opencv)
+    OpenCV.loadShared();
+  }
 
   private static final double CELL_SIZE = 40.0;
 
@@ -29,6 +39,8 @@ public class CryptoCrossword extends Application {
   private Spinner<Integer> colsSpinner;
   private GridPane visualInputGrid;
   private TextArea rawTextArea;
+
+  private SimpleStringProperty loadedFile = new SimpleStringProperty("");
 
   // References for visual grid synchronization
   private TextField[][] currentVisualFields;
@@ -153,7 +165,7 @@ public class CryptoCrossword extends Application {
 
       ScrollPane scrollPane = new ScrollPane(keyBank);
       scrollPane.setFitToWidth(true);
-      scrollPane.setPrefWidth(250);
+      scrollPane.setPrefWidth(320);
 
       // -----------------------------------------------------
       // PUT KEY BANK ON LEFT
@@ -175,9 +187,37 @@ public class CryptoCrossword extends Application {
     primaryStage.setTitle("Kryptoristikko JavaFX");
     primaryStage.setScene(scene);
     primaryStage.show();
+    //Path kryptoristikkoPath = Paths.get("/Users/gerbiloi/Downloads/krypto-grey.JPG");
+    //Path kryptoristikkoPath = Paths.get("/Users/gerbiloi/Downloads/krypto-iphone.JPG");
+    // krypto-iphone.JPG
+    //getMatrix(kryptoristikkoPath);
 
   }
 
+  private void getMatrix(Path path) {
+    KryptoristikkoExtractorService service = new KryptoristikkoExtractorService();
+
+    try {
+      // Option A: Call with a String file path
+      List<String> matrix = service.extractMatrix(path);
+
+      // Option B: Call with a Path object
+      // Path photoPath = Paths.get("photos", "kryptoristikko.jpg");
+      // List<String> matrix = service.extractMatrix(photoPath);
+
+      // Print each row of the matrix
+      System.out.println("\"matrix\": [");
+      for (int i = 0; i < matrix.size(); i++) {
+        String comma = (i < matrix.size() - 1) ? "," : "";
+        System.out.println("  \"" + matrix.get(i) + "\"" + comma);
+      }
+      System.out.println("]");
+
+    } catch (Exception e) {
+      System.err.println("Failed to extract matrix from image: " + e.getMessage());
+      e.printStackTrace();
+    }
+  }
   // =============================================================
   // COUNT NUMBERS
   // =============================================================
@@ -210,12 +250,16 @@ public class CryptoCrossword extends Application {
     Button saveBtn = new Button("💾 Save Progress (.krypto)");
 
     Button loadBtn = new Button("📂 Load Progress (.krypto)");
+    Label loadLabel = new Label("Loads the last saved state.");
+    loadLabel.textProperty().bind(loadedFile);
 
-    saveBtn.setOnAction(e -> saveStateToFile(stage));
+    saveBtn.setOnAction(e -> {
+      saveStateToFile(stage);
 
+      });
     loadBtn.setOnAction(e -> loadStateFromFile(stage));
 
-    return new ToolBar(saveBtn, loadBtn);
+    return new ToolBar(saveBtn, loadBtn, loadLabel);
   }
 
   // =============================================================
@@ -225,6 +269,11 @@ public class CryptoCrossword extends Application {
   private void saveStateToFile(Stage stage) {
 
     FileChooser fileChooser = new FileChooser();
+    if( loadedFile.getValue() != null) {
+      String substring = loadedFile.getValue().substring(loadedFile.getValue().lastIndexOf("/") + 1);
+      substring = substring.replace(".krypto", "");
+      fileChooser.setInitialFileName(substring);
+    }
 
     fileChooser.setTitle("Save Crypto Crossword State");
 
@@ -263,44 +312,29 @@ public class CryptoCrossword extends Application {
       String[] lines = matrixText.split("\\r?\\n");
 
       for (int i = 0; i < lines.length; i++) {
-
         json.append("    \"").append(lines[i].trim()).append("\"");
-
         if (i < lines.length - 1) {
           json.append(",");
         }
-
         json.append("\n");
       }
 
       json.append("  ],\n");
-
       json.append("  \"letters\": {\n");
 
       List<String> mappingEntries = new ArrayList<>();
-
       for (Map.Entry<Integer, StringProperty> entry : numberProperties.entrySet()) {
-
         String val = entry.getValue().get();
-
         if (val != null && !val.isEmpty()) {
-
           mappingEntries.add("    \"" + entry.getKey() + "\": \"" + val + "\"");
         }
       }
-
       json.append(String.join(",\n", mappingEntries));
-
       json.append("\n  }\n");
-
       json.append("}");
-
       Files.writeString(file.toPath(), json.toString());
-
       showInfoAlert("Saved Successfully", "State saved to:\n" + file.getAbsolutePath());
-
     } catch (IOException ex) {
-
       showErrorAlert("File Save Error", "Could not save file: " + ex.getMessage());
     }
   }
@@ -326,7 +360,7 @@ public class CryptoCrossword extends Application {
     if (file == null) {
       return;
     }
-
+    loadedFile.set(file.toString());
     try {
 
       String content = Files.readString(file.toPath());
